@@ -1,0 +1,37 @@
+[
+    {
+        "type": "book",
+        "title": "Théorie de la musique",
+        "author": [
+            "A. Danhauser"
+        ],
+        "year": 1996
+    },
+    {
+        "type": "book",
+        "title": "Test-Driven Development by Example",
+        "author": [
+            "Kent Beck"
+        ],
+        "year": 2003
+    },
+    {
+        "type": "book",
+        "title": "Design Patterns - Elements of Reusable Object-Oriented Software",
+        "author": [
+            "Erich Gamma",
+            "Richard Helm",
+            "Ralph Johnson",
+            "John Vlissides"
+        ],
+        "year": 1995
+    },
+    {
+        "type": "article",
+        "title": "XML Schema",
+        "author": [
+            "Eric van der Vlist"
+        ],
+        "year": 2001
+    }
+]
