@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jberger.json;
+package org.jberger.jsonparsingexample.json;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
