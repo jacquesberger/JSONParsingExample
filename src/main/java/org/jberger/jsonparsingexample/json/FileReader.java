@@ -17,22 +17,15 @@ package org.jberger.jsonparsingexample.json;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class FileReader {
-    public static String loadFileIntoString(String filePath) throws FileNotFoundException, IOException {
-        byte[] fullSizeBuffer = new byte[(int) new File(filePath).length()];
-        FileInputStream inputStream = new FileInputStream(filePath);
-        inputStream.read(fullSizeBuffer);
-        return new String(fullSizeBuffer);
-    }
-
-    public static String loadUTF8FileIntoString(String filePath) throws FileNotFoundException, IOException {
+    public static String loadFileIntoString(String filePath, String fileEncoding) throws FileNotFoundException, IOException {
         char[] fullSizeBuffer = new char[(int) new File(filePath).length()];
         FileInputStream inputStream = new FileInputStream(filePath);
-        InputStreamReader inputReader = new InputStreamReader(inputStream, "UTF-8");
+        InputStreamReader inputReader = new InputStreamReader(inputStream, fileEncoding);
         inputReader.read(fullSizeBuffer);
         return new String(fullSizeBuffer);
     }

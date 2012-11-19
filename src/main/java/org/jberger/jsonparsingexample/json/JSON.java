@@ -22,14 +22,15 @@ import net.sf.json.JSONSerializer;
 public class JSON {
 
     public static void main(String[] args) throws Exception {
-        String jsonTxt = FileReader.loadFileIntoString("json/library.json");
+        String jsonTxt = FileReader.loadFileIntoString("json/library.json", "UTF-8");
 
         JSONArray root = (JSONArray) JSONSerializer.toJSON(jsonTxt);
         int documentCount = root.size();
         for (int i = 0; i < documentCount; i++) {
             JSONObject document = root.getJSONObject(i);
-            if (document.getString("type").equals("book"))
+            if (document.getString("type").equals("book")) {
                 System.out.println(document.getString("title") + " publié en " + document.getInt("year"));
+            }
         }
     }
 }
