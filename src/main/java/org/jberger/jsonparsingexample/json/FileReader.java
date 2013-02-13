@@ -15,18 +15,14 @@
  */
 package org.jberger.jsonparsingexample.json;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import org.apache.commons.io.IOUtils;
 
 public class FileReader {
+
     public static String loadFileIntoString(String filePath, String fileEncoding) throws FileNotFoundException, IOException {
-        char[] fullSizeBuffer = new char[(int) new File(filePath).length()];
-        FileInputStream inputStream = new FileInputStream(filePath);
-        InputStreamReader inputReader = new InputStreamReader(inputStream, fileEncoding);
-        inputReader.read(fullSizeBuffer);
-        return new String(fullSizeBuffer);
+        return IOUtils.toString(new FileInputStream(filePath), fileEncoding);
     }
 }
