@@ -16,6 +16,7 @@
 package org.jberger.jsonparsingexample.json;
 
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -24,10 +25,44 @@ import net.sf.json.JSONSerializer;
 public class JSON {
 
     public static void main(String[] args) throws Exception {
+        ArrayList<String> bookTitles = getBookTitles();
+        printToConsole(bookTitles);
+        saveToFiles(bookTitles);        
+    }
+
+    private static void saveToFiles(ArrayList<String> bookTitles) throws IOException {
+        JSONArray outputList = new JSONArray();
+        for (String title : bookTitles) {
+            outputList.add(title);
+        }
+        saveAsRawJsonFile(outputList);
+        saveAsIndentedJsonFile(outputList);        
+    }
+
+    private static void saveAsIndentedJsonFile(JSONArray outputList) throws IOException {
+        FileWriter pretty = new FileWriter("json/output-pretty.json");
+        pretty.write(outputList.toString(2));
+        pretty.close();
+    }
+
+    private static void saveAsRawJsonFile(JSONArray outputList) throws IOException {
+        FileWriter raw = new FileWriter("json/output-raw.json");
+        outputList.write(raw);
+        raw.close();
+    }
+
+    private static void printToConsole(ArrayList<String> bookTitles) {
+        System.out.println("Voici les livres contenus dans le fichier original :");
+        for (String title : bookTitles) {
+            System.out.println(title);
+        }
+    }
+
+    private static ArrayList<String> getBookTitles() throws IOException {
         ArrayList<String> bookTitles = new ArrayList<String>();
-        
         String jsonTxt = FileReader.loadFileIntoString("json/library.json", "UTF-8");
         JSONArray root = (JSONArray) JSONSerializer.toJSON(jsonTxt);
+        
         int documentCount = root.size();
         for (int i = 0; i < documentCount; i++) {
             JSONObject document = root.getJSONObject(i);
@@ -36,22 +71,6 @@ public class JSON {
             }
         }
         
-        System.out.println("Voici les livres contenus dans le fichier original :");
-        for (String title : bookTitles) {
-            System.out.println(title);
-        }
-        
-        JSONArray outputList = new JSONArray();
-        for (String title : bookTitles) {
-            outputList.add(title);
-        }
-        
-        FileWriter raw = new FileWriter("json/output-raw.json");
-        outputList.write(raw);
-        raw.close();
-        
-        FileWriter pretty = new FileWriter("json/output-pretty.json");
-        pretty.write(outputList.toString(2));
-        pretty.close();
+        return bookTitles;
     }
 }
