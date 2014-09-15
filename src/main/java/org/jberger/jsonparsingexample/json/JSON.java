@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
-
+// Commentaire ajouté en classe
 public class JSON {
 
     public static void main(String[] args) throws Exception {
