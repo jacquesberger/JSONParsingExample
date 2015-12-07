@@ -40,15 +40,11 @@ public class JSON {
     }
 
     private static void saveAsIndentedJsonFile(JSONArray outputList) throws IOException {
-        FileWriter pretty = new FileWriter("json/output-pretty.json");
-        pretty.write(outputList.toString(2));
-        pretty.close();
+        Utf8File.saveStringIntoFile("json/output-pretty.json", outputList.toString(2));
     }
 
     private static void saveAsRawJsonFile(JSONArray outputList) throws IOException {
-        FileWriter raw = new FileWriter("json/output-raw.json");
-        outputList.write(raw);
-        raw.close();
+        Utf8File.saveStringIntoFile("json/output-raw.json", outputList.toString());
     }
 
     private static void printToConsole(ArrayList<String> bookTitles) {
@@ -60,7 +56,7 @@ public class JSON {
 
     private static ArrayList<String> getBookTitles() throws IOException {
         ArrayList<String> bookTitles = new ArrayList<String>();
-        String jsonTxt = FileReader.loadFileIntoString("json/library.json", "UTF-8");
+        String jsonTxt = Utf8File.loadFileIntoString("json/library.json");
         JSONArray root = (JSONArray) JSONSerializer.toJSON(jsonTxt);
         
         int documentCount = root.size();

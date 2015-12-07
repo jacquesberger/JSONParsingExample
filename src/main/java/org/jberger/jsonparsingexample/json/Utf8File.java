@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 Jacques Berger.
+ * Copyright 2015 Jacques Berger.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,14 +15,21 @@
  */
 package org.jberger.jsonparsingexample.json;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
-public class FileReader {
+public class Utf8File {
 
-    public static String loadFileIntoString(String filePath, String fileEncoding) throws FileNotFoundException, IOException {
-        return IOUtils.toString(new FileInputStream(filePath), fileEncoding);
+    public static String loadFileIntoString(String filePath) throws FileNotFoundException, IOException {
+        return IOUtils.toString(new FileInputStream(filePath), "UTF-8");
+    }
+    
+    public static void saveStringIntoFile(String filePath, String content) throws IOException {
+        File f = new File(filePath);
+        FileUtils.writeStringToFile(f, content, "UTF-8");
     }
 }
