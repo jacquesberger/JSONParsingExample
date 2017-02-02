@@ -25,7 +25,7 @@ public class JSON {
 
     public static void main(String[] args) throws Exception {
         ArrayList<String> bookTitles = getBookTitles();
-        printToConsole(bookTitles);
+        print(bookTitles);
         saveToFiles(bookTitles);        
     }
 
@@ -51,7 +51,7 @@ public class JSON {
         Utf8File.saveStringIntoFile("json/output-raw.json", outputList.toString());
     }
 
-    private static void printToConsole(ArrayList<String> bookTitles) {
+    private static void print(ArrayList<String> bookTitles) {
         System.out.println("Voici les livres contenus dans le fichier original :");
         for (String title : bookTitles) {
             System.out.println(title);
