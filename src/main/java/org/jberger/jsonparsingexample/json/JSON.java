@@ -30,12 +30,12 @@ public class JSON {
     }
 
     private static void saveToFiles(ArrayList<String> bookTitles) throws IOException {
-        JSONArray outputList = new JSONArray();
+        JSONArray bookTitleList = new JSONArray();
         for (String title : bookTitles) {
-            outputList.add(title);
+            bookTitleList.add(title);
         }
-        saveAsRawJsonFile(outputList);
-        saveAsIndentedJsonFile(outputList);        
+        saveAsRawJsonFile(bookTitleList);
+        saveAsIndentedJsonFile(bookTitleList);        
     }
 
     private static void saveAsIndentedJsonFile(JSONArray outputList) throws IOException {
