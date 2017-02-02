@@ -74,7 +74,8 @@ public class JSON {
     private static void addOneBook(JSONArray root, int i, ArrayList<String> bookTitles) {
         JSONObject document = root.getJSONObject(i);
         if (document.getString("type").equals("book")) {
-            bookTitles.add(document.getString("title"));
+            String title = document.getString("title");
+            bookTitles.add(title);
         }
     }
 }
