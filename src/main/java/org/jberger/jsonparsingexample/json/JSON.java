@@ -15,13 +15,12 @@
  */
 package org.jberger.jsonparsingexample.json;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
-// Commentaire ajouté en classe
+
 public class JSON {
 
     public static void main(String[] args) throws Exception {
@@ -61,12 +60,16 @@ public class JSON {
         
         int documentCount = root.size();
         for (int i = 0; i < documentCount; i++) {
-            JSONObject document = root.getJSONObject(i);
-            if (document.getString("type").equals("book")) {
-                bookTitles.add(document.getString("title"));
-            }
+            addOneBook(root, i, bookTitles);
         }
         
         return bookTitles;
+    }
+
+    private static void addOneBook(JSONArray root, int i, ArrayList<String> bookTitles) {
+        JSONObject document = root.getJSONObject(i);
+        if (document.getString("type").equals("book")) {
+            bookTitles.add(document.getString("title"));
+        }
     }
 }
