@@ -22,7 +22,7 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
-public class Utf8File {
+public class DiskFile {
 
     public static String loadFileIntoString(String filePath) throws FileNotFoundException, IOException {
         return IOUtils.toString(new FileInputStream(filePath), "UTF-8");

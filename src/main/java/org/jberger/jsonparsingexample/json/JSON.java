@@ -30,26 +30,26 @@ public class JSON {
     }
 
     private static void saveToFiles(ArrayList<String> bookTitles) throws IOException {
-        JSONArray bookTitleList = initializeBookList(bookTitles);
+        JSONArray bookTitleList = initializeBookArray(bookTitles);
         saveAsRawJsonFile(bookTitleList);
         saveAsIndentedJsonFile(bookTitleList);        
     }
 
-    private static JSONArray initializeBookList(ArrayList<String> bookTitles) {
-        JSONArray bookTitleList = new JSONArray();
+    private static JSONArray initializeBookArray(ArrayList<String> bookTitles) {
+        JSONArray bookList = new JSONArray();
         for (String title : bookTitles) {
-            bookTitleList.add(title);
+            bookList.add(title);
         }
-        return bookTitleList;       
+        return bookList;
     }
 
     // Fonction pour générer un JSON agréable à lire.
     private static void saveAsIndentedJsonFile(JSONArray outputList) throws IOException {
-        Utf8File.saveStringIntoFile("json/output-pretty.json", outputList.toString(2));
+        DiskFile.saveStringIntoFile("json/output-pretty.json", outputList.toString(2));
     }
 
     private static void saveAsRawJsonFile(JSONArray outputList) throws IOException {
-        Utf8File.saveStringIntoFile("json/output-raw.json", outputList.toString());
+        DiskFile.saveStringIntoFile("json/output-raw.json", outputList.toString());
     }
 
     private static void print(ArrayList<String> bookTitles) {
@@ -61,7 +61,7 @@ public class JSON {
 
     private static ArrayList<String> getBookTitles() throws IOException {
         ArrayList<String> bookTitles = new ArrayList<String>();
-        String jsonTxt = Utf8File.loadFileIntoString("json/library.json");
+        String jsonTxt = DiskFile.loadFileIntoString("json/library.json");
         JSONArray root = (JSONArray) JSONSerializer.toJSON(jsonTxt);
         
         int documentCount = root.size();
