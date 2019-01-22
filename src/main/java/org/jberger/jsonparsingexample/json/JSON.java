@@ -43,6 +43,7 @@ public class JSON {
         return bookTitleList;       
     }
 
+    // Fonction pour générer un JSON agréable à lire.
     private static void saveAsIndentedJsonFile(JSONArray outputList) throws IOException {
         Utf8File.saveStringIntoFile("json/output-pretty.json", outputList.toString(2));
     }
